@@ -54,3 +54,76 @@ Consulta histórica de grabaciones.
 Creación de solicitudes desde las vistas de CCTV.
 
 Integración con estructura de red y componentes físicos.
+
+
+🔍 Obtención de cámaras asociadas al servidor
+
+Esta función obtiene todas las cámaras CCTV relacionadas a un servidor específico dentro de una planta.
+Cada servidor puede tener cámaras vinculadas tanto como equipo padre como equipo hijo, por lo que la consulta utiliza un UNION para reunir ambas relaciones.
+El resultado devuelve únicamente cámaras activas (no borradas), incluyendo su nombre, estado (si está en pausa) y la carpeta donde se almacenan sus grabaciones.
+
+```php
+static public function CamarasYServidoresRelacionados($serv)
+{
+    // 27 = id de las cámaras CCTV
+    $query = "
+        SELECT 
+            ie.id,
+            ie.nombre,
+            ie.cam_en_pausa,
+            ec.nombre_carpeta
+        FROM equipos__relacionados er
+        INNER JOIN inventario__equipos ie 
+            ON er.id_equipo_b = ie.id
+        INNER JOIN equipos__camaras_carpetas ec 
+            ON ec.id = ie.nom_carp
+        WHERE ie.id_tipo = 27 
+          AND er.id_equipo_a = :serv1
+          AND ie.borrado NOT IN (1,2)
+
+        UNION
+
+        SELECT 
+            iee.id,
+            iee.nombre,
+            iee.cam_en_pausa,
+            ecc.nombre_carpeta
+        FROM equipos__relacionados err
+        LEFT JOIN inventario__equipos iee 
+            ON err.id_equipo_a = iee.id
+        LEFT JOIN equipos__camaras_carpetas ecc
+            ON ecc.id = iee.nom_carp
+        WHERE iee.id_tipo = 27 
+          AND err.id_equipo_b = :serv2
+          AND iee.borrado NOT IN (1,2)
+
+        ORDER BY nombre_carpeta
+    ";
+
+    try {
+        $st = Db::prepQuery($query);
+        $st->bindParam(':serv1', $serv);
+        $st->bindParam(':serv2', $serv);
+
+        if (!Db::execQuery($st)) {
+            throw new Exception('Ocurrió un error al ejecutar la consulta de cámaras relacionadas.');
+        }
+
+        $retorno = [];
+
+        while ($row = Db::fetchArr($st)) {
+            $retorno[] = [
+                'id'           => $row['id'],
+                'nombre'       => $row['nombre'],
+                'cam_en_pausa' => $row['cam_en_pausa'],
+                'carpeta'      => $row['nombre_carpeta']
+            ];
+        }
+
+        return $retorno;
+
+    } catch (Exception $e) {
+        throw new Exception('Error obteniendo cámaras del servidor: ' . $e->getMessage());
+    }
+}
+``
