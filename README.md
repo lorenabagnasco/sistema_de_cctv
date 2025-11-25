@@ -12,7 +12,7 @@ Podemos ir navegando por las columnas rojas hasta detectar que camara esta en ro
 
 ![DESPLIEGUE DE_SERVIDORES](DESPLIEGUE_SERVIDOR.png)
 
-![Despliegue de Cámara](DESPLIEGUE_CAMARA.png)
+![Despliegue de Cámara](DESPLIEGUE_cAMARA.png)
 
 🏗️ Arquitectura del Sistema
 
