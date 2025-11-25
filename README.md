@@ -145,7 +145,7 @@ Este bloque recorre todas las cámaras vinculadas al servidor actual y las muest
 Incluye el nombre de la cámara, la carpeta asignada y un enlace para ver las grabaciones.
 Si la cámara está marcada como “en pausa”, se le asigna una clase especial para mostrarlo visualmente.
 
-![Calendario 1 de Cámara](CALENDARIO_MES_ACTUAL.png)
+![Calendario 1 de Cámara](CALENDARIO_MES_aCTUAL.png)
 
 ![Calendario 2 de Cámara](CALENDARIO_MES_ACTUAL2.png)
 
