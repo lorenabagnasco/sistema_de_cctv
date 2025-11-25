@@ -2,6 +2,17 @@
 
 El Sistema de CCTV es una herramienta desarrollada para gestionar cámaras de seguridad, visualizar grabaciones, administrar calendarios de eventos y generar solicitudes directamente desde las vistas del CCTV.
 Proporciona una interfaz intuitiva, con funcionalidades de consulta, monitoreo y administración técnica de la infraestructura de cámaras.
+Al ingresar podremos ver con facilidad si existen camaras caidas o que no graban.
+
+![Vista General](CAMARAS_VISTA_GRAL.png)
+
+Podemos ir navegando por las columnas rojas hasta detectar que camara esta en rojo.
+
+![DESPLIEGUE DE_PLANTAS](DESPLIEGUE_PLANTA.png)
+
+![DESPLIEGUE DE_SERVIDORES](DESPLIEGUE_SERVIDOR.png)
+
+![Despliegue de Cámara](DESPLIEGUE_CAMARA.png)
 
 🏗️ Arquitectura del Sistema
 
@@ -35,7 +46,7 @@ El calendario ofrece una vista organizada por día/mes, mostrando los eventos re
 
 📝 Crear Solicitud desde CCTV
 
-Permite generar una solicitud directamente desde la vista del CCTV, por ejemplo cuando se detecta un problema, anomalía o situación a reportar.
+Permite generar una solicitud directamente desde la vista del CCTV, dentro del calendario de la camara, por ejemplo cuando se detecta un problema, anomalía o situación a reportar.
 Esto ayuda a integrar la gestión operativa con la supervisión visual del sistema.
 
 ![Crear solicitud](./CREAR_SOLI_DESDE_CCTV.png)
@@ -127,3 +138,15 @@ static public function CamarasYServidoresRelacionados($serv)
     }
 }
 ``
+
+📝 Renderizado de cámaras dentro del servidor.
+
+Este bloque recorre todas las cámaras vinculadas al servidor actual y las muestra en pantalla.
+Incluye el nombre de la cámara, la carpeta asignada y un enlace para ver las grabaciones.
+Si la cámara está marcada como “en pausa”, se le asigna una clase especial para mostrarlo visualmente.
+
+![Calendario 1 de Cámara](CALENDARIO_MES_ACTUAL.png)
+
+![Calendario 2 de Cámara](CALENDARIO_MES_ACTUAL2.png)
+
+![OBSERVACION INGRESADA EN CALENDARIO](cALENDARIO_CON_CUADRO_ABIERTO.png)
