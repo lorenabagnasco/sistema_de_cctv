@@ -137,7 +137,7 @@ static public function CamarasYServidoresRelacionados($serv)
         throw new Exception('Error obteniendo cámaras del servidor: ' . $e->getMessage());
     }
 }
-``
+```
 
 📝 Renderizado de cámaras dentro del servidor.
 
