@@ -38,7 +38,7 @@ El calendario ofrece una vista organizada por día/mes, mostrando los eventos re
 Permite generar una solicitud directamente desde la vista del CCTV, por ejemplo cuando se detecta un problema, anomalía o situación a reportar.
 Esto ayuda a integrar la gestión operativa con la supervisión visual del sistema.
 
-![Crear solicitud](./CREAR SOLIDO DESDE CCTV.png)
+![Crear solicitud](./CREAR_SOLI_DESDE_CCTV.png)
 
 
 🔧 Funcionalidades Principales
